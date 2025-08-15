@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Simple Calculator</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to right, #ffd6b0, #f9b98a);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .calc-container {
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        text-align: center;
+        width: 280px;
+    }
+    h3 {
+        margin-bottom: 15px;
+    }
+    input {
+        width: 90%;
+        padding: 8px;
+        margin: 8px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+        text-align: center;
+    }
+    .btn {
+        width: 45%;
+        padding: 10px;
+        margin: 5px;
+        border: none;
+        border-radius: 6px;
+        color: white;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-weight: bold;
+    }
+    
+    /* Add button - Green */
+    .btn-add {
+        background-color: #4CAF50;
+    }
+    .btn-add:hover {
+        background-color: #45a049;
+        transform: translateY(-2px);
+    }
+    
+    /* Subtract button - Red */
+    .btn-subtract {
+        background-color: #f44336;
+    }
+    .btn-subtract:hover {
+        background-color: #d32f2f;
+        transform: translateY(-2px);
+    }
+    
+    /* Multiply button - Blue */
+    .btn-multiply {
+        background-color: #2196F3;
+    }
+    .btn-multiply:hover {
+        background-color: #1976D2;
+        transform: translateY(-2px);
+    }
+    
+    /* Divide button - Purple */
+    .btn-divide {
+        background-color: #9C27B0;
+    }
+    .btn-divide:hover {
+        background-color: #7B1FA2;
+        transform: translateY(-2px);
+    }
+    
+    .result {
+        margin-top: 12px;
+        color: #333;
+        font-weight: bold;
+        font-size: 16px;
+        padding: 10px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        border: 2px solid #e9ecef;
+    }
+</style>
+</head>
+<body>
+
+<div class="calc-container">
+    <h3>Simple Calculator</h3>
+
+    <input type="number" id="num1" placeholder="Enter first number"><br>
+    <input type="number" id="num2" placeholder="Enter second number"><br>
+
+    <button class="btn btn-add" onclick="calculate('+')">Add</button>
+    <button class="btn btn-subtract" onclick="calculate('-')">Subtract</button><br>
+    <button class="btn btn-multiply" onclick="calculate('*')">Multiply</button>
+    <button class="btn btn-divide" onclick="calculate('/')">Divide</button>
+
+    <div id="result" class="result"></div>
+</div>
+
+<script>
+function calculate(op) {
+    let n1 = parseFloat(document.getElementById("num1").value);
+    let n2 = parseFloat(document.getElementById("num2").value);
+
+    if (isNaN(n1) || isNaN(n2)) {
+        document.getElementById("result").innerHTML = "Please enter valid numbers";
+        return;
+    }
+
+    let res = 0;
+    let operation = "";
+    
+    switch(op) {
+        case '+': 
+            res = n1 + n2; 
+            operation = "Addition";
+            break;
+        case '-': 
+            res = n1 - n2; 
+            operation = "Subtraction";
+            break;
+        case '*': 
+            res = n1 * n2; 
+            operation = "Multiplication";
+            break;
+        case '/': 
+            if (n2 !== 0) {
+                res = n1 / n2;
+                operation = "Division";
+            } else {
+                document.getElementById("result").innerHTML = "Error: Cannot divide by zero";
+                return;
+            }
+            break;
+    }
+
+    document.getElementById("result").innerHTML = `${operation}: ${res}`;
+}
+</script>
+
+</body>
+</html>
+
